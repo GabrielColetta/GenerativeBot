@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>cb62bbc2-652b-4b32-8098-18039fc17dc2</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GenerativeBot.ApiService\GenerativeBot.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.3.1" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="9.5.0" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.RavenDB" Version="9.5.0" />
+  </ItemGroup>
+
+</Project>
