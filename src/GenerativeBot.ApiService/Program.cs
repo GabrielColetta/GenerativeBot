@@ -1,5 +1,7 @@
+using GenerativeBot.Domain.Constants;
 using GenerativeBot.Domain.Extensions;
 using GenerativeBot.Infrastructure.Bus.Extensions;
+using GenerativeBot.Infrastructure.Http.Extensions;
 using GenerativeBot.Infrastructure.RavenDB.Extensions;
 
 namespace GenerativeBot.Api;
@@ -13,14 +15,15 @@ internal class Program
         builder.AddServiceDefaults()
             .AddDatabase()
             .AddBusDependencies()
-            .AddOllamaApiClient("ollama")
+            .AddOllamaApiClient(GlobalConnectionName.AI)
             .AddEmbeddingGenerator();
 
         builder.Services
             .AddProblemDetails()
             .AddDomainDependencies()
             .AddDatabaseDependencies()
-            .AddBusDependencies();
+            .AddBusDependencies()
+            .AddCustomHttpClients(builder.Configuration);
 
         var app = builder.Build();
 

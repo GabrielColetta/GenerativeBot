@@ -2,8 +2,6 @@
 
 public class BusConfiguration
 {
-    public const string Key = "BusConfiguration";
-    public string ConnectionString { get; set; } = string.Empty;
-
+    public const string Key = "Bus";
     public string QueueName { get; set; } = string.Empty;
 }

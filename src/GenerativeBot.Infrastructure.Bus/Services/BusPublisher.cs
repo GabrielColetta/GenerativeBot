@@ -1,4 +1,6 @@
 ﻿using GenerativeBot.Domain.Interfaces;
+using GenerativeBot.Infrastructure.Bus.Configurations;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -8,10 +10,12 @@ namespace GenerativeBot.Infrastructure.Bus.Services;
 public class BusPublisher : IBusPublisher
 {
     private readonly IConnection _connection;
+    private readonly string _queueName;
 
-    public BusPublisher(IConnection connection)
+    public BusPublisher(IConnection connection, IOptions<BusConfiguration> configuration)
     {
         _connection = connection;
+        _queueName = configuration.Value.QueueName;
     }
 
     public async Task PublishAsync<TMessage>(TMessage message, CancellationToken cancellationToken)
@@ -19,7 +23,8 @@ public class BusPublisher : IBusPublisher
     {
         ArgumentNullException.ThrowIfNull(message);
 
-        var queueName = $"{typeof(TMessage).Name}-queue";
+        var queueName = string.Format(_queueName, typeof(TMessage).Name);
+
         using var channel = _connection.CreateModel();
         channel.QueueDeclare(
             queue: queueName,

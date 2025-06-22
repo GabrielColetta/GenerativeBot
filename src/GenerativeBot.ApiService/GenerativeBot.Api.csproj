@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GenerativeBot.BotApi\GenerativeBot.Infrastructure.Http.csproj" />
     <ProjectReference Include="..\GenerativeBot.Infrastructure.Bus\GenerativeBot.Infrastructure.Bus.csproj" />
     <ProjectReference Include="..\GenerativeBot.Infrastructure.RavenDB\GenerativeBot.Infrastructure.RavenDB.csproj" />
     <ProjectReference Include="..\GenerativeBot.ServiceDefaults\GenerativeBot.ServiceDefaults.csproj" />

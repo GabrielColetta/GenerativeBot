@@ -1,4 +1,6 @@
-﻿using GenerativeBot.Domain.Interfaces;
+﻿using GenerativeBot.Domain.Consumers;
+using GenerativeBot.Domain.Interfaces;
+using GenerativeBot.Domain.Models;
 using GenerativeBot.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +11,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddDomainDependencies(this IServiceCollection services)
     {
         services.AddScoped<IChatService, ChatService>();
+        services.AddScoped<IConsumer<ChatQuery>, ChatConsumer>();
         return services;
     }
 }
